@@ -2,8 +2,41 @@
     margin: 0;
     padding: 0; 
 }
+
+html {
+    height: 100%;
+    width: 100%;
+
+} 
+body {
+    height: 100%;
+}
 .main {
-    background-color: grey;
-    width: 70%; 
+    background-color: green;
+    width: 1200px; 
     height: 100%; 
+    margin: auto;
+}
+
+.sidebar {
+    background-color: #f8fcfd;
+    width: 30%;
+    height: 100%; 
+    float: left; 
+}
+
+.content {
+    background-color: white;
+    width: 70%;
+    height: 100%; 
+    float: right; 
+
+}
+
+/* Sidebar Action */
+.sidebar #myphoto {
+    width: 150px; 
+    height: 200px;
+    margin: auto;  
+
 }
