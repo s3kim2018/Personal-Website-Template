@@ -78,17 +78,22 @@ body {
     transition: background-size 0.2s ease-in-out;
 }
 #home:hover {
-    background-size: 10% 0.1em;
+    cursor: pointer;
+    background-size: 10% 0.1em !important;
 }
 #about:hover {
-    background-size: 18% 0.1em;
+    cursor: pointer;
+    background-size: 18% 0.1em !important;
 }
 #blog:hover {
-    background-size: 9% 0.1em;
+    cursor: pointer;
+    background-size: 9% 0.1em !important;
 }
 #projects:hover {
-    background-size: 15% 0.1em;
+    cursor: pointer;
+    background-size: 15% 0.1em !important;
 }
 #contact:hover {
-    background-size: 20% 0.1em;
+    cursor: pointer;
+    background-size: 20% 0.1em !important;
 }

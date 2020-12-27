@@ -5,7 +5,7 @@ let projects = document.getElementById('projects')
 let contact = document.getElementById('contact')
 
 console.log("loaded")
-
+home.style.backgroundSize = '10% 0.1em';
 
 let currentelem = 'home'
 function changemenu(val) {
@@ -23,7 +23,7 @@ function changemenu(val) {
         } else if (val == 'contact') {
             document.getElementById(val).style.backgroundSize = '20% 0.1em';
         }
-        document.getElementById(currentelem).style.backgroundSize = '0%';
+        document.getElementById(currentelem).style.backgroundSize = '0% 0.1em';
         currentelem = val
     }
 }
