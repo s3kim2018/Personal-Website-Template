@@ -4,31 +4,30 @@
 }
 
 html {
-    height: 100%;
+    height: 100vh;
     width: 100%;
 
 } 
 body {
-    height: 100%;
+    height: 100vh;
 }
 .main {
     background-color: green;
     width: 1200px; 
-    height: 100%; 
+    height: 100vh; 
     margin: auto;
 }
 
 .sidebar {
     background-color: #f8fcfd;
     width: 30%;
-    height: 100%; 
+    height: 100vh; 
     float: left; 
 }
 
 .content {
-    background-color: white;
     width: 70%;
-    height: 100%; 
+    height: 100vh; 
     float: right; 
 
 }
@@ -69,6 +68,8 @@ body {
 .sidebar .menuitem {
     text-align: center;
     margin-top: 29px;
+    font-family: Optima, sans-serif;
+    font-size: 16.5px;
     text-decoration: none;
     background-image: linear-gradient(#6495ED, #6495ED);
     background-size: 0% 0.1em;
@@ -79,21 +80,57 @@ body {
 }
 #home:hover {
     cursor: pointer;
-    background-size: 10% 0.1em !important;
+    background-size: 12% 0.1em !important;
 }
 #about:hover {
     cursor: pointer;
-    background-size: 18% 0.1em !important;
+    background-size: 20% 0.1em !important;
 }
 #blog:hover {
     cursor: pointer;
-    background-size: 9% 0.1em !important;
+    background-size: 10% 0.1em !important;
 }
 #projects:hover {
     cursor: pointer;
-    background-size: 15% 0.1em !important;
+    background-size: 16% 0.1em !important;
 }
 #contact:hover {
     cursor: pointer;
-    background-size: 20% 0.1em !important;
+    background-size: 22% 0.1em !important;
+}
+
+/* Home Styling */
+.content .home {
+    background: url(background4.jpg); 
+    background-size: cover; 
+
+}
+
+.content #home1 {
+    position: relative;
+    font-family: Optima, sans-serif;
+    top: 410px;
+    left: 80px; 
+    font-size: 32px;
+}
+.content #home2 {
+    position: relative;
+    font-family: Optima, sans-serif;
+    top: 430px;
+    left: 100px; 
+
+}
+.content #home3 {
+    position: relative;
+    font-family: Optima, sans-serif;
+    top: 450px;
+    left: 100px; 
+
+}
+.content #home4 {
+    position: relative;
+    font-family: Optima, sans-serif;
+    top: 470px;
+    left: 100px; 
+
 }

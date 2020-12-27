@@ -5,7 +5,8 @@ let projects = document.getElementById('projects')
 let contact = document.getElementById('contact')
 
 console.log("loaded")
-home.style.backgroundSize = '10% 0.1em';
+home.style.backgroundSize = '12% 0.1em';
+home.style.color = 'blue';
 
 let currentelem = 'home'
 function changemenu(val) {
@@ -13,17 +14,23 @@ function changemenu(val) {
         return;
     } else {
         if (val == 'home') {
-            document.getElementById(val).style.backgroundSize = '10% 0.1em';
+            home.style.backgroundSize = '12% 0.1em';
+            home.style.color = 'blue';
         } else if (val == 'about') {
-            document.getElementById(val).style.backgroundSize = '18% 0.1em';
+            about.style.backgroundSize = '20% 0.1em';
+            about.style.color = 'blue';
         } else if (val == 'blog') {
-            document.getElementById(val).style.backgroundSize = '9% 0.1em';
+            blog.style.backgroundSize = '10% 0.1em';
+            blog.style.color = 'blue';
         } else if (val == "projects") {
-            document.getElementById(val).style.backgroundSize = '15% 0.1em';
+            projects.style.backgroundSize = '16% 0.1em';
+            projects.style.color = 'blue';
         } else if (val == 'contact') {
-            document.getElementById(val).style.backgroundSize = '20% 0.1em';
+            contact.style.backgroundSize = '22% 0.1em';
+            contact.style.color = 'blue';
         }
         document.getElementById(currentelem).style.backgroundSize = '0% 0.1em';
+        document.getElementById(currentelem).style.color = 'black';
         currentelem = val
     }
 }

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <head> 
     <link rel="stylesheet" type = "text/css" href="{{url_for('static', filename = 'index.css')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Brian's Website</title>
 </head>
-<body style = "height: 100%">
+<body style = "height: 100vh">
     <div class = "main">
         <div class = "sidebar">
             <img id = "myphoto" src = "{{url_for('static', filename = 'photo.jpg')}}">
@@ -24,6 +25,12 @@
             <p class = "menuitem" id = "contact">Contact Me</p>
         </div>
         <div class = "content">
+            <div class = "home" style = "width: 100%; height: 100%;">
+                <h2 id = "home1">My Name is Brian! I'm a...</h2>
+                <h3 id = "home2">Software Developer</h3>
+                <h3 id = "home3">Student</h3>
+                <h3 id = "home4">Engineer</h3>
+            </div>
 
         </div>
 
