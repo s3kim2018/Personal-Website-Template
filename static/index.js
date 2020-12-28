@@ -21,11 +21,14 @@ function changemenu(val) {
             home.style.color = 'blue';
             document.getElementById('homepage').style.opacity = '1'; 
             document.getElementById('homepage').style.height = '100%';
+            document.getElementById('homepage').style.overflow = 'hidden';
+
         } else if (val == 'about') {
             about.style.backgroundSize = '20% 0.1em';
             about.style.color = 'blue';
             document.getElementById('aboutpage').style.opacity = '1'; 
             document.getElementById('aboutpage').style.height = '100%';
+            document.getElementById('aboutpage').style.overflowY = 'scroll';
         } else if (val == 'blog') {
             blog.style.backgroundSize = '10% 0.1em';
             blog.style.color = 'blue';
@@ -46,6 +49,7 @@ function changemenu(val) {
         document.getElementById(currentelem).style.color = 'black';
         document.getElementById(pageelem).style.opacity = '0';
         document.getElementById(pageelem).style.height = '0%' 
+        document.getElementById(pageelem).style.overflow = 'hidden'
         currentelem = val
         pageelem = currentelem + 'page'; 
     }

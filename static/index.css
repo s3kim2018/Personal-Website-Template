@@ -146,27 +146,50 @@ body {
 .maincontent #aboutpage {
     transition: opacity 1.5s ease-out; 
     height: 0; 
-    overflow: hidden; 
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 .maincontent #aboutpage .ui {
     position: relative;
     top: 10px; 
     left: 45px; 
+    width: 760px; 
 }
 .maincontent #aboutpage #coursesh {
     position: relative;
     top: 19px;
     left: 50px;
+    width: 760px; 
 }
 .maincontent #aboutpage #courses {
     position: relative;
     top: 8px;
     left: 60px;
+    width: 760px; 
 }
 .maincontent #aboutpage #labassistanth {
     position: relative;
     top: 0px;
     left: 60px;
+    width: 760px; 
+}
+.maincontent #aboutpage #uraph {
+    position: relative;
+    top: 0px;
+    left: 50px;
+}
+
+.maincontent #aboutpage #codesuiteh {
+    position: relative;
+    top: -5px;
+    left: 50px;
+    width: 760px; 
+}
+.maincontent #aboutpage #dailycalh {
+    position: relative;
+    top: -1px;
+    left: 50px;
+    width: 760px; 
 }
 /* Blog Page */
 .maincontent #blogpage {
