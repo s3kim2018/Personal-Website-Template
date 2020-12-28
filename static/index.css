@@ -24,7 +24,7 @@ body {
     float: left; 
 }
 
-.content {
+.maincontent {
     width: 70%;
     height: 100vh; 
     float: right; 
@@ -99,7 +99,7 @@ body {
 }
 
 /* Home Styling */
-.content #homepage {
+.maincontent #homepage {
     display: block; 
     transition: opacity 1.5s ease-out; 
     height: 0; 
@@ -108,25 +108,25 @@ body {
     background-size: cover; 
 }
 
-.content #home1 {
+.maincontent #home1 {
     position: relative;
     font-family: Optima, sans-serif;
-    top: 410px;
+    top: 430px;
     left: 80px; 
     font-size: 32px;
 }
-.content #home2 {
+.maincontent #home2 {
     position: relative;
     font-family: Optima, sans-serif;
-    top: 410px;
+    top: 400px;
     left: 100px; 
 
 }
-.content #homebutton {
+.maincontent #homebutton {
     position: relative;
     font-family: Optima, sans-serif;
     text-align: center;
-    top: 430px;
+    top: 410px;
     left: 100px;
     width: 165px; 
     height: 33px; 
@@ -138,34 +138,54 @@ body {
     border-radius: 2px;
 }
 
-.content #homebutton:hover {
+.maincontent #homebutton:hover {
     cursor: pointer;
     background-color: #F8F8F8; 
 }
 /* About Page */
-.content #aboutpage {
+.maincontent #aboutpage {
     transition: opacity 1.5s ease-out; 
     height: 0; 
     overflow: hidden; 
 }
-
+.maincontent #aboutpage .ui {
+    position: relative;
+    top: 10px; 
+    left: 45px; 
+}
+.maincontent #aboutpage #coursesh {
+    position: relative;
+    top: 19px;
+    left: 50px;
+}
+.maincontent #aboutpage #courses {
+    position: relative;
+    top: 8px;
+    left: 60px;
+}
+.maincontent #aboutpage #labassistanth {
+    position: relative;
+    top: 0px;
+    left: 60px;
+}
 /* Blog Page */
-.content #blogpage {
+.maincontent #blogpage {
     transition: opacity 1.5s ease-out; 
     height: 0; 
     overflow: hidden; 
 }
 
 /* Projects Page */
-.content #projectspage {
+.maincontent #projectspage {
     transition: opacity 1.5s ease-out; 
     height: 0; 
     overflow: hidden; 
 }
 
 /* Contact Page  */
-.content #contactpage {
+.maincontent #contactpage {
     transition: opacity 1.5s ease-out; 
     height: 0; 
     overflow: hidden; 
 }
+
