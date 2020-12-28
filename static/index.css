@@ -116,21 +116,27 @@ body {
 .content #home2 {
     position: relative;
     font-family: Optima, sans-serif;
+    top: 410px;
+    left: 100px; 
+
+}
+.content #homebutton {
+    position: relative;
+    font-family: Optima, sans-serif;
+    text-align: center;
     top: 430px;
-    left: 100px; 
-
+    left: 100px;
+    width: 165px; 
+    height: 33px; 
+    line-height: 33px; 
+    padding: 5px;
+    text-decoration: none; 
+    color: black;  
+    border: 1px solid black; 
+    border-radius: 2px;
 }
-.content #home3 {
-    position: relative;
-    font-family: Optima, sans-serif;
-    top: 450px;
-    left: 100px; 
 
-}
-.content #home4 {
-    position: relative;
-    font-family: Optima, sans-serif;
-    top: 470px;
-    left: 100px; 
-
+.content #homebutton:hover {
+    cursor: pointer;
+    background-color: #F8F8F8; 
 }
