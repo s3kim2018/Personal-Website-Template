@@ -3,6 +3,19 @@ let about = document.getElementById('about')
 let blog = document.getElementById('blog')
 let projects = document.getElementById('projects')
 let contact = document.getElementById('contact')
+let posts = document.getElementsByClassName("blogpost");
+
+for (var i = 0; i < posts.length; i++) {
+    posts[i].addEventListener("click", function() {
+        document.getElementById('blogpage').style.opacity = '0';
+        document.getElementById('blogpage').style.height = '0';
+        document.getElementById('blogpage').style.overflow = 'hidden';
+        document.getElementById('theblogpost').style.opacity = '1';
+        document.getElementById('theblogpost').style.height = "100%"
+        document.getElementById('theblogpost').style.overflowY = "auto"
+
+    })
+}
 
 console.log("loaded")
 home.style.backgroundSize = '12% 0.1em';
@@ -34,6 +47,7 @@ function changemenu(val) {
             blog.style.color = 'blue';
             document.getElementById('blogpage').style.opacity = '1';
             document.getElementById('blogpage').style.height = '100%';
+            document.getElementById('blogpage').style.overflowY = 'auto';
         } else if (val == "projects") {
             projects.style.backgroundSize = '16% 0.1em';
             projects.style.color = 'blue';
@@ -64,3 +78,15 @@ projects.addEventListener('click', function() {
     changemenu('projects')})
 contact.addEventListener('click', function() {
     changemenu('contact')})
+
+function truncateText(selector, maxLength) {
+    var element = document.querySelector(selector),
+        truncated = element.innerText;
+
+    if (truncated.length > maxLength) {
+        truncated = truncated.substr(0,maxLength) + '...';
+    }
+    return truncated;
+}
+//You can then call the function with something like what i have below.
+$('.subcontent').html(truncateText('.subcontent', 200))

@@ -202,6 +202,31 @@ body {
     overflow: hidden; 
 }
 
+.maincontent #blogpage .blogpost {
+    display: flex;
+    width: 80%;
+    margin-top: 30px; 
+    margin: auto;
+}
+.maincontent #blogpage .blogpost:hover {
+    cursor: pointer; 
+    transform: scale(1.05);
+
+
+}
+.maincontent #blogpage .blogpost img{
+    width: 140px;
+    height: 140px; 
+}
+.maincontent #blogpage .blogpost .blogtitle {
+    width: 80%;
+}
+/* Blogpost Pge */
+.maincontent #theblogpost {
+    transition: opacity 1.5s ease-out; 
+    height: 0; 
+    overflow: hidden; 
+}
 /* Projects Page */
 .maincontent #projectspage {
     transition: opacity 1.5s ease-out; 
