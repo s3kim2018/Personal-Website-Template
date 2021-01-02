@@ -1,4 +1,5 @@
 import json
+import hashlib 
 from flask import Flask, render_template, url_for, make_response, jsonify
 from flask_mongoengine import MongoEngine
 from constants import mongodb_pass
@@ -13,11 +14,13 @@ class blogpost(db.Document):
     name = db.StringField()
     date = db.StringField()
     content = db.StringField()
+    url = db.StringField()
     def to_json(self): 
         return {
             "name": self.name,
             "date": self.date, 
-            "content": self.content
+            "content": self.content,
+            "url": self.url
         }
 
 
@@ -27,14 +30,24 @@ def hello():
     print(alltheposts)
     return render_template('index.html', posts = alltheposts)
 
+@app.route("/blogpost/<url>")
+def loadblogpost(url):
+    post_obj = blogpost.objects(url = url).first()
+    postjson = post_obj.to_json()
+    print(postjson)
+    return render_template('post.html', post = postjson) 
+
 
 @app.route("/api/db_populate", methods = ['POST'])
 def db_populate(): 
-    post1 = blogpost(name = "Test Blog Post1", date = "December 29, 2020", content = "A:LKSDJL:JDAL:JDAL:JSDAL:JALJHIOjaklfjal;fajl;fj;lfjal;fja;jdflajl;kgjaklghioejgapoijfopadjfaoipjfopajdfiopafjsfkljas;fjaskl;fjaklfjsfls;kjfd;lkfja;ljfdla;fjafl;jdfl;dskajfaksdlfjal;dkfjaslk;fjdalkfj")
+    name = "Test Blog Post1"
+    post1 = blogpost(name = "Test Blog Post1", date = "December 29, 2020", content = "A:LKSDJL:JDAL:JDAL:JSDAL:JALJHIOjaklfjal;fajl;fj;lfjal;fja;jdflajl;kgjaklghioejgapoijfopadjfaoipjfopajdfiopafjsfkljas;fjaskl;fjaklfjsfls;kjfd;lkfja;ljfdla;fjafl;jdfl;dskajfaksdlfjal;dkfjaslk;fjdalkfj", url = str(hashlib.sha1(name.encode()).hexdigest()))
     post1.save()
-    post2 = blogpost(name = "Test Blog Post2", date = "December 29, 2020", content = "A:LKSDJL:JDAL:JDAL:JSDAL:JALJHIOjaklfjal;fajl;fj;lfjal;fja;jdflajl;kgjaklghioejgapoijfopadjfaoipjfopajdfiopafjsfkljas;fjaskl;fjaklfjsfls;kjfd;lkfja;ljfdla;fjafl;jdfl;dskajfaksdlfjal;dkfjaslk;fjdalkfj")
+    name = "Test Blog Post2"
+    post2 = blogpost(name = "Test Blog Post2", date = "December 29, 2020", content = "A:LKSDJL:JDAL:JDAL:JSDAL:JALJHIOjaklfjal;fajl;fj;lfjal;fja;jdflajl;kgjaklghioejgapoijfopadjfaoipjfopajdfiopafjsfkljas;fjaskl;fjaklfjsfls;kjfd;lkfja;ljfdla;fjafl;jdfl;dskajfaksdlfjal;dkfjaslk;fjdalkfj", url = str(hashlib.sha1(name.encode()).hexdigest()))
     post2.save()
-    post3 = blogpost(name = "Test Blog Post3", date = "December 29, 2020", content = "A:LKSDJL:JDAL:JDAL:JSDAL:JALJHIOjaklfjal;fajl;fj;lfjal;fja;jdflajl;kgjaklghioejgapoijfopadjfaoipjfopajdfiopafjsfkljas;fjaskl;fjaklfjsfls;kjfd;lkfja;ljfdla;fjafl;jdfl;dskajfaksdlfjal;dkfjaslk;fjdalkfj")
+    name = "Test Blog Post3"
+    post3 = blogpost(name = "Test Blog Post3", date = "December 29, 2020", content = "A:LKSDJL:JDAL:JDAL:JSDAL:JALJHIOjaklfjal;fajl;fj;lfjal;fja;jdflajl;kgjaklghioejgapoijfopadjfaoipjfopajdfiopafjsfkljas;fjaskl;fjaklfjsfls;kjfd;lkfja;ljfdla;fjafl;jdfl;dskajfaksdlfjal;dkfjaslk;fjdalkfj", url = str(hashlib.sha1(name.encode()).hexdigest()))
     post3.save()
     return make_response("", 201)
 

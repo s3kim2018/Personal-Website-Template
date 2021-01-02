@@ -183,21 +183,31 @@
                 <br>
             </div>
             
-            <div id = "blogpage" style = "padding: 0">
+            <div id = "blogpage" style = "padding: 0;">
+                <div class = "theform">
+                    <div class="ui left corner labeled input" id = "password">
+                        <input type="password" placeholder="Password" id = "thepass">
+                        <div class="ui left corner label">
+                            <i class="lock icon"></i>
+                        </div>
+                    </div>
+                    <button id = "newpost" class="ui primary button">
+                        New Post
+                    </button>
+                    <button id = "editpost" class="ui button">
+                        Edit Post
+                    </button>
+                </div>
                 {% for post in posts %}
-                <div class = "blogpost">
+                <a class = "blogpost" href = "/blogpost/{{post.url}}">
                     <img src = "{{url_for('static', filename = 'img/collegeboard.png')}}">
                     <div class = "blogtitle">
-                        <h2 style = "margin-top: 18px; margin-bottom: 0;"> {{post.name}}</h2>
-                        <p style = "padding: 0; margin: 0;">{{post.date}}</p>
-                        <p class = "subcontent" style = "word-wrap: break-word;">{{post.content}}</p>
+                        <h2 style = "margin-top: 18px; margin-bottom: 0; color: black;"> {{post.name}}</h2>
+                        <p style = "padding: 0; margin: 0; color: black;">{{post.date}}</p>
+                        <p class = "subcontent" style = "word-wrap: break-word; color: black;">{{post.content}}</p>
                     </div>
-                </div>
+                </a>
                 {% endfor %}
-
-            </div>
-            <div id = "theblogpost">
-                <h1>The Title</h1>
 
             </div>
             <div id = "projectspage">
@@ -210,6 +220,7 @@
         </div>
 
     </div>
+    <script type="text/javascript" src="{{url_for('static', filename='sha256.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script>
     <script src="{{url_for('static', filename = 'semantic/dist/semantic.min.js')}}"></script>
     <script src="{{url_for('static', filename='index.js')}}"></script>

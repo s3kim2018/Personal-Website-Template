@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type = "text/css" href="{{url_for('static', filename = 'post.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'semantic/dist/semantic.min.css')}}">
+
+</head>
+<body>
+    <div class = "maincontent" style = "overflow-y: scroll">
+        <a href = "/" class="ui top attached button" tabindex="0" style = "width: 73%; margin: auto;">Back To Website</a>
+        <div class="ui attached segment" style = "height: 100%; width: 73%; margin: auto">
+            <h2 style = "text-align: center;">{{post.name}}</h2>
+            <p style = "float: right">{{post.date}}</p>
+            <br>
+            <br>
+            <p style = "font-size: 14px; word-wrap: break-word; width: 80%; text-align: center; margin: auto">{{post.content}}</p>
+        </div>
+        <a href = "/" class="ui bottom attached button" tabindex="0" style = "width: 73%; margin: auto;">Back To Website</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename = 'semantic/dist/semantic.min.js')}}"></script>
+
+
+</body>

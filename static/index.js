@@ -1,3 +1,5 @@
+
+
 let home = document.getElementById("home")
 let about = document.getElementById('about')
 let blog = document.getElementById('blog')
@@ -5,17 +7,9 @@ let projects = document.getElementById('projects')
 let contact = document.getElementById('contact')
 let posts = document.getElementsByClassName("blogpost");
 
-for (var i = 0; i < posts.length; i++) {
-    posts[i].addEventListener("click", function() {
-        document.getElementById('blogpage').style.opacity = '0';
-        document.getElementById('blogpage').style.height = '0';
-        document.getElementById('blogpage').style.overflow = 'hidden';
-        document.getElementById('theblogpost').style.opacity = '1';
-        document.getElementById('theblogpost').style.height = "100%"
-        document.getElementById('theblogpost').style.overflowY = "auto"
 
-    })
-}
+
+
 
 console.log("loaded")
 home.style.backgroundSize = '12% 0.1em';
@@ -88,5 +82,20 @@ function truncateText(selector, maxLength) {
     }
     return truncated;
 }
-//You can then call the function with something like what i have below.
 $('.subcontent').html(truncateText('.subcontent', 200))
+
+let pass = '328c58c43aaa9031087b044a592a7be9a27b1b88e0c4930bef839f1081711f49'
+let newpost = document.getElementById('newpost')
+let editpost = document.getElementById('editpost')
+newpost.addEventListener('click', function() {
+    pass = document.getElementById("thepass").value
+    console.log(pass)
+    var sha256 = new jsSHA('SHA-256', 'TEXT');
+    sha256.update(pass);
+    var hash = sha256.getHash("HEX");
+    console.log(hash)
+    return; 
+})
+editpost.addEventListener('click', function() {
+
+})
