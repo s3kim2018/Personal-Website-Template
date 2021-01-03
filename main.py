@@ -51,6 +51,15 @@ def db_populate():
     post3.save()
     return make_response("", 201)
 
+@app.route("/makepost/<key>", methods = ["GET"])
+def loadmakepost(key):
+    compkey = str(hashlib.sha1(mongodb_pass.encode()).hexdigest())
+    if compkey == key: 
+        return render_template('edit.html')
+    else: 
+        return make_response("", 404) 
+
+
 @app.route("/api/db_getall", methods = ['GET'])
 def db_getallposts(): 
     posts = []

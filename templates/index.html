@@ -197,6 +197,7 @@
                     <button id = "editpost" class="ui button">
                         Edit Post
                     </button>
+                    <p id = "messagebox" style = "color:red; line-height: 60px; margin-left: 5px;"></p>
                 </div>
                 {% for post in posts %}
                 <a class = "blogpost" href = "/blogpost/{{post.url}}">
@@ -220,6 +221,7 @@
         </div>
 
     </div>
+    <script type="text/javascript" src="{{url_for('static', filename='sha1.js')}}"></script>
     <script type="text/javascript" src="{{url_for('static', filename='sha256.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script>
     <script src="{{url_for('static', filename = 'semantic/dist/semantic.min.js')}}"></script>

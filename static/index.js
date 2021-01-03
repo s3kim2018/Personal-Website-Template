@@ -11,6 +11,7 @@ let posts = document.getElementsByClassName("blogpost");
 
 
 
+
 console.log("loaded")
 home.style.backgroundSize = '12% 0.1em';
 home.style.color = 'blue';
@@ -42,6 +43,7 @@ function changemenu(val) {
             document.getElementById('blogpage').style.opacity = '1';
             document.getElementById('blogpage').style.height = '100%';
             document.getElementById('blogpage').style.overflowY = 'auto';
+            document.getElementById('messagebox').innerHTML = '';
         } else if (val == "projects") {
             projects.style.backgroundSize = '16% 0.1em';
             projects.style.color = 'blue';
@@ -84,16 +86,26 @@ function truncateText(selector, maxLength) {
 }
 $('.subcontent').html(truncateText('.subcontent', 200))
 
-let pass = '328c58c43aaa9031087b044a592a7be9a27b1b88e0c4930bef839f1081711f49'
+let thepass = "328c58c43aaa9031087b044a592a7be9a27b1b88e0c4930bef839f1081711f49"
 let newpost = document.getElementById('newpost')
 let editpost = document.getElementById('editpost')
 newpost.addEventListener('click', function() {
     pass = document.getElementById("thepass").value
     console.log(pass)
-    var sha256 = new jsSHA('SHA-256', 'TEXT');
+    if (pass.length == 0) {
+        document.getElementById('messagebox').innerHTML = "Please Enter a Password"
+        return
+    }
+    var sha256 = new jsSHA("SHA-256", 'TEXT');
     sha256.update(pass);
     var hash = sha256.getHash("HEX");
-    console.log(hash)
+    var url = sha1(pass);
+
+    if (hash != thepass) {
+        document.getElementById('messagebox').innerHTML = "Wrong Password"
+        return
+    }
+    window.location.replace("/makepost/" + url);
     return; 
 })
 editpost.addEventListener('click', function() {
