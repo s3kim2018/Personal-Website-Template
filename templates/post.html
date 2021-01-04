@@ -3,21 +3,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type = "text/css" href="{{url_for('static', filename = 'post.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'semantic/dist/semantic.min.css')}}">
+    <link rel="stylesheet" type = "text/css" href="{{url_for('static', filename = 'mathquill4quill.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'semantic/dist/semantic.min.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.core.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="{{url_for('static', filename = 'mathquill.js')}}"></script>
+    <script src="{{url_for('static', filename = 'katex.js')}}"></script>
+    <script src="{{url_for('static', filename = 'mathquill4quill.js')}}"></script>
+    <script src="{{url_for('static', filename = 'semantic/dist/semantic.min.js')}}"></script>
+    <script src="{{url_for('static', filename='post.js')}}"></script>
 </head>
 <body>
     <div class = "maincontent" style = "overflow-y: scroll">
         <a href = "/" class="ui top attached button" tabindex="0" style = "width: 73%; margin: auto;">Back To Website</a>
-        <div class="ui attached segment" style = "height: 100%; width: 73%; margin: auto">
-            <h2 style = "text-align: center;">{{post.name}}</h2>
-            <p style = "float: right">{{post.date}}</p>
+        <div class="ui attached segment" style = "min-height: 100%; height: auto; width: 73%; margin: auto">
+            <h1 style = "text-align: center;">{{post.name}}</h1>
+            <p style = "float: right; margin-right: 35px;">{{post.date}}</p>
             <br>
             <br>
-            <p style = "font-size: 14px; word-wrap: break-word; width: 80%; text-align: center; margin: auto">{{post.content}}</p>
+            <br>
+            <img src = "../getimg/{{post.url}}" style = "position: relative; width: 290px; height: 290px; margin: auto; display: block;">
+            <br> <br>
+            <div style = "display:none; overflow-y: hidden;"; id = "hiddencontent">{{post.content}}</div>
+            <div id = "contentspace" style = "word-wrap: break-word; overflow-y: hidden; width: 90%; margin: auto"></div>
         </div>
         <a href = "/" class="ui bottom attached button" tabindex="0" style = "width: 73%; margin: auto;">Back To Website</a>
     </div>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script>
-    <script src="{{url_for('static', filename = 'semantic/dist/semantic.min.js')}}"></script>
+    <script>
+
+        var options = {
+        modules: {
+                formula: true,
+            },
+            theme: 'snow'
+        };
+        var editor = new Quill('#contentspace', options);  // First matching element will be used
+        var enableMathQuillFormulaAuthoring = mathquill4quill();
+        enableMathQuillFormulaAuthoring(editor);
+        editor.enable(false)
+        var content = JSON.parse(document.getElementById('hiddencontent').innerHTML)
+        console.log(content)
+        editor.setContents(content, 'api')
+    </script>
 
 
 </body>

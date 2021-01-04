@@ -39,7 +39,7 @@
                     <img src="{{url_for('static', filename = 'img/school.png')}}">
                     <div class="content">
                         University of California, Berkeley
-                        <div class="sub header">Computer Science and Statistics Major, Aug 2018 ~ May 2022. GPA: 3.61/4.00</div>
+                        <div class="sub header">Computer Science and Statistics Major, Aug 2018 ~ May 2022. GPA: 3.62/4.00</div>
                     </div>
                 </h2>
                 <h4 id = "coursesh"> Courses Taken: </h4>
@@ -200,12 +200,12 @@
                     <p id = "messagebox" style = "color:red; line-height: 60px; margin-left: 5px;"></p>
                 </div>
                 {% for post in posts %}
-                <a class = "blogpost" href = "/blogpost/{{post.url}}">
-                    <img src = "{{url_for('static', filename = 'img/collegeboard.png')}}">
-                    <div class = "blogtitle">
+                <a class = "blogpost" href = "/blogpost/{{post.url}}" style = "margin-top: 15px;">
+                    <img src = "/getimg/{{post.url}}">
+                    <div class = "blogtitle" style = "margin-left: 25px;">
                         <h2 style = "margin-top: 18px; margin-bottom: 0; color: black;"> {{post.name}}</h2>
                         <p style = "padding: 0; margin: 0; color: black;">{{post.date}}</p>
-                        <p class = "subcontent" style = "word-wrap: break-word; color: black;">{{post.content}}</p>
+                        <p class = "subcontent" style = "word-wrap: break-word; color: black;">{{post.desc}}</p>
                     </div>
                 </a>
                 {% endfor %}

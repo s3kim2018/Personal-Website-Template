@@ -1,6 +1,7 @@
 import json
+import io
 import hashlib 
-from flask import Flask, render_template, url_for, make_response, jsonify
+from flask import Flask, request, render_template, url_for, make_response, jsonify, send_file
 from flask_mongoengine import MongoEngine
 from constants import mongodb_pass
 app = Flask(__name__)
@@ -14,13 +15,17 @@ class blogpost(db.Document):
     name = db.StringField()
     date = db.StringField()
     content = db.StringField()
+    desc = db.StringField()
     url = db.StringField()
+    photo = db.FileField()
     def to_json(self): 
         return {
             "name": self.name,
             "date": self.date, 
             "content": self.content,
-            "url": self.url
+            "desc": self.desc,
+            "url": self.url,
+            "photo": self.photo
         }
 
 
@@ -34,7 +39,6 @@ def hello():
 def loadblogpost(url):
     post_obj = blogpost.objects(url = url).first()
     postjson = post_obj.to_json()
-    print(postjson)
     return render_template('post.html', post = postjson) 
 
 
@@ -59,12 +63,35 @@ def loadmakepost(key):
     else: 
         return make_response("", 404) 
 
-
-@app.route("/api/db_getall", methods = ['GET'])
-def db_getallposts(): 
-    posts = []
-    for post in blogpost.objects:
-        posts.append(post)
-    return make_response(jsonify(posts), 201)
+@app.route("/getimg/<key>")
+def getimg(key): 
+    if blogpost.objects(url = key):
+        post_obj = blogpost.objects(url = key).first()
+        print(post_obj.photo)
+        return send_file(io.BytesIO(post_obj.photo.read()),
+                     attachment_filename='image.png',
+                     mimetype='image/png')
+    else:
+        return make_response("", 404)
+        
+@app.route("/savepost/<key>", methods = ['POST'])
+def savepost(key): 
+    compkey = str(hashlib.sha1(mongodb_pass.encode()).hexdigest())
+    if compkey == key:
+        print(request.files) 
+        file = request.files['filename']
+        title = request.form['title']
+        thedate = request.form['date']
+        description = request.form['desc']
+        data = request.form['data']
+        print(data)
+        if blogpost.objects(name = title):
+            return make_response("alreadythere", 404)
+        else:
+            newpost = blogpost(name = title, date = thedate, content = data, desc = description, url = str(hashlib.sha1(title.encode()).hexdigest()), photo = file)
+            newpost.save()
+        return make_response("success", 201)
+    else: 
+        return make_response("failure", 404) 
 if __name__ == '__main__':
     app.run(debug = True)

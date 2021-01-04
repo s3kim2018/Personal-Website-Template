@@ -1,7 +1,6 @@
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-  ['blockquote', 'code-block'],
-  ['formula'],
+  [ 'link', 'image', 'video', 'formula' ],          // add's image support
   [{ 'header': 1 }, { 'header': 2 }],               // custom button values
   [{ 'list': 'ordered'}, { 'list': 'bullet' }],
   [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
@@ -16,7 +15,6 @@ var toolbarOptions = [
   [{ 'align': [] }],
 
   ['clean'] 
-
 ]
 var options = {
   modules: {
@@ -31,20 +29,40 @@ var enableMathQuillFormulaAuthoring = mathquill4quill();
 let post = document.getElementById('postbut')
 post.addEventListener('click', function() {
   file = document.getElementById('myFile').files[0]
-  name = document.getElementById('title')
+  title = document.getElementById('title')
+  desc = document.getElementById('desc')
   date = document.getElementById('date')
-  console.log(name.innerHTML)
-  console.log(date.innerHTML)
-  console.log(editor.getContents())
-
-  var formdata = new FormData() 
-  if (document.getElementById('myFile').files.length == 0 || name.innerHTML == '' || date.innerHTML == '' || editor.getContents() == '') {
-    console.log("Need more information")
+  contents = document.getElementById('contents')
+  if (document.getElementById('myFile').files.length == 0 || title.value == '' || date.value == '' || desc.value == '' || editor.getContents() == '') {
+    document.getElementById('notification').innerHTML = "Please Fill Out All The Fields!"
+    document.getElementById('notification').style.color = "red";
     return 
   }
-  formdata.set('postpic', file, file.name)
-  formdata.set('name', name.innerHTML)
-  formdata.set('date', date.innerHTML)
-  formdata.set('content', editor.getContents())
-  console.log(formdata)
+  console.log(JSON.stringify(editor.getContents()))
+  contents.value = JSON.stringify(editor.getContents())
+  console.log(contents.value)
+  urllst = window.location.href.split("/")
+  formdata = new FormData(document.getElementById('theform'))
+  formdata.set('title', title.value)
+  formdata.set('date', date.value)
+  formdata.set('desc', desc.value)
+  formdata.set('data', contents.value)
+  fetch('/savepost/' + urllst[urllst.length - 1], {
+    method: 'post',
+    body: formdata
+  }).then(function(response) {
+    return response.text()
+  }).then(function(data) {
+    console.log(data)
+    if (data == "success") {
+      document.getElementById('notification').innerHTML = "Success!"
+      document.getElementById('notification').style.color = "green";
+    } else if (data == "alreadythere") {
+      document.getElementById('notification').innerHTML = "That Post Already Exists!"
+      document.getElementById('notification').style.color = "red";
+    } else {
+      document.getElementById('notification').innerHTML = "Server Error!"
+      document.getElementById('notification').style.color = "red";
+    }
+  })
 })

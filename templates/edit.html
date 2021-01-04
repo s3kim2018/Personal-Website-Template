@@ -13,21 +13,23 @@
 </head>
 <body>
     <div class = "maincontent" style = "overflow-y: scroll">
-        <div style = "width: 75%; margin: auto">
+        <form style = "width: 75%; margin: auto" id = "theform" onsubmit="return false">
             <input type = "text", id = "title", placeholder="Title" style = "width: 100%; height: 40px; margin-top: 20px; margin-bottom: 20px;">
+            <input type = "text", id = "desc", placeholder="Description" maxlength="300" style = "width: 100%; min-height: 40px; height: auto; margin-bottom: 20px;">
             <input type = "text", id = "date", placeholder="Date (December 29, 1999)" style = "width: 200px; height: 30px; margin-bottom: 20px;">
             <input type="file" id="myFile" name="filename">
+            <input type = "text", id = "contents", style = "display: none;">
             <div id = "editor" style = 'height: 600px; margin-bottom: 20px;'>
             </div>
             <div id = "toolbar">
-
             </div>
             <div class="ui buttons">
                 <button class="ui button" id = "savebut">Save</button>
                 <div class="or"></div>
                 <button class="ui positive button" id = "postbut">Post</button>
             </div>    
-        </div>
+            <p id = "notification" style = "font-size: 16px"></p>
+        </form>
 
     </div>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="crossorigin="anonymous"></script>

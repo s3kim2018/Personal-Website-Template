@@ -17,3 +17,13 @@ body {
     margin: auto; 
     background-color: #F6F6F6;
 }
+.ql-clipboard {
+    display: none;
+}
+.ql-toolbar {
+    display: none;
+}
+
+#contentspace {
+    height: auto;
+}
