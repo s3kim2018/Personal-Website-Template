@@ -11,8 +11,8 @@
     <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
  
 </head>
-<body>
-    <div class = "maincontent" style = "overflow-y: scroll">
+<body style = "overflow-y: hidden">
+    <div class = "maincontent" style = "overflow-y: hidden">
         <form style = "width: 75%; margin: auto" id = "theform" onsubmit="return false">
             <input type = "text", id = "title", placeholder="Title" style = "width: 100%; height: 40px; margin-top: 20px; margin-bottom: 20px;">
             <input type = "text", id = "desc", placeholder="Description" maxlength="300" style = "width: 100%; min-height: 40px; height: auto; margin-bottom: 20px;">
@@ -23,10 +23,14 @@
             </div>
             <div id = "toolbar">
             </div>
-            <div class="ui buttons">
-                <button class="ui button" id = "savebut">Save</button>
-                <div class="or"></div>
-                <button class="ui positive button" id = "postbut">Post</button>
+            <div style = "display: flex">
+                <div class="ui buttons">
+                    <button class="ui button" id = "savebut">Save</button>
+                    <div class="or"></div>
+                    <button class="ui positive button" id = "postbut">Post</button>
+                </div>
+                <div id = "savenotif" style = "display: flex; margin-left: 15px;"></div>
+                
             </div>    
             <p id = "notification" style = "font-size: 16px"></p>
         </form>

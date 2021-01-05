@@ -27,7 +27,22 @@ class blogpost(db.Document):
             "url": self.url,
             "photo": self.photo
         }
-
+class savedpost(db.Document):
+    name = db.StringField(required = False)
+    date = db.StringField(required = False)
+    content = db.StringField(required = False)
+    desc = db.StringField(required = False)
+    url = db.StringField(required = False)
+    photo = db.FileField(required = False)
+    def to_json(self): 
+        return {
+            "name": self.name,
+            "date": self.date, 
+            "content": self.content,
+            "desc": self.desc,
+            "url": self.url,
+            "photo": self.photo
+        }
 
 @app.route("/")
 def hello():
@@ -88,10 +103,45 @@ def savepost(key):
         if blogpost.objects(name = title):
             return make_response("alreadythere", 404)
         else:
-            newpost = blogpost(name = title, date = thedate, content = data, desc = description, url = str(hashlib.sha1(title.encode()).hexdigest()), photo = file)
+            newpost = blogpost(name = title, date = thedate, content = data, desc = description, url = key, photo = file)
             newpost.save()
         return make_response("success", 201)
     else: 
         return make_response("failure", 404) 
+
+@app.route("/saveeditpost/<key>", methods = ['POST'])
+def saveeditpost(key):
+    compkey = str(hashlib.sha1(mongodb_pass.encode()).hexdigest())
+    file = None 
+    if compkey == key:
+        if request.files:
+            file = request.files['filename']
+        title = request.form['title']
+        thedate = request.form['date']
+        description = request.form['desc']
+        data = request.form['data']
+        print(file.read())
+        print(title)
+        print(thedate)
+        print(description)
+        print(data)
+        if savedpost.objects(url = key):
+            prevsavedpost = savedpost.objects(url = key)[0]
+            prevsavedpost.name = title
+            prevsavedpost.date = thedate
+            prevsavedpost.content = data
+            prevsavedpost.desc = description
+            prevsavedpost.url = key
+            if request.files:
+                prevsavedpost.photo = file
+            prevsavedpost.save() 
+        else: 
+            newsavepost = savedpost(name = title, date = thedate, content = data, desc = description, url = key, photo = file)
+            newsavepost.save()
+        return make_response("success", 201)
+    else:
+        return make_response("failure", 404)
+
+
 if __name__ == '__main__':
     app.run(debug = True)
